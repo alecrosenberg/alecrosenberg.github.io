@@ -3,52 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Resume</title>
+    <title>Alec Rosenberg — Resume</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
-        header { text-align: center; margin-bottom: 40px; }
-        h1 { margin-bottom: 5px; }
-        h2 { border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 30px; }
-        .contact a { margin: 0 10px; color: #0066cc; text-decoration: none; }
-        .job { margin-bottom: 20px; }
-        .job h3 { margin-bottom: 5px; }
-        .job .date { color: #666; font-style: italic; }
-        ul { padding-left: 20px; }
+        :root {
+            --text: #1a1a1a;
+            --muted: #555;
+            --accent: #b8860b;
+            --border: #e0e0e0;
+            --bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            padding: 2rem 1rem;
+            font-size: 15px;
+        }
+
+        .resume {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            border-bottom: 2px solid var(--text);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .contact {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .contact a {
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .contact a:hover {
+            border-bottom-color: var(--muted);
+        }
+
+        .separator {
+            margin: 0 0.5rem;
+            color: var(--border);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Education */
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .edu-school {
+            font-weight: 600;
+        }
+
+        .edu-date {
+            font-size: 0.9rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .edu-detail {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: 0.15rem;
+        }
+
+        .edu-detail strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Skills */
+        .skills {
+            list-style: none;
+        }
+
+        .skills li {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .skills li strong {
+            font-weight: 600;
+            display: inline-block;
+            min-width: 110px;
+        }
+
+        /* Projects */
+        .project {
+            margin-bottom: 1rem;
+        }
+
+        .project:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .project-title a {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: border-color 0.15s;
+        }
+
+        .project-title a:hover {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: 0.15rem;
+        }
+
+        /* Certifications */
+        .cert {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .cert-status {
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* Print */
+        @media print {
+            body {
+                padding: 0;
+                font-size: 11pt;
+            }
+
+            .resume {
+                max-width: 100%;
+            }
+
+            a {
+                color: var(--text) !important;
+                border-bottom: none !important;
+            }
+
+            .contact a::after {
+                content: " (" attr(href) ")";
+                font-size: 0.85em;
+                color: var(--muted);
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.75rem;
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .edu-header {
+                flex-direction: column;
+                gap: 0.1rem;
+            }
+
+            .skills li strong {
+                display: block;
+                min-width: auto;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Your Name</h1>
-        <p class="contact">
-            <a href="mailto:you@email.com">you@email.com</a> | 
-            <a href="https://linkedin.com/in/you">LinkedIn</a> | 
-            <a href="https://github.com/you">GitHub</a>
-        </p>
-    </header>
+    <main class="resume">
 
-    <section>
-        <h2>Experience</h2>
-        <div class="job">
-            <h3>Job Title - Company</h3>
-            <div class="date">Jan 2024 - Present</div>
-            <ul>
-                <li>Describe a key accomplishment here.</li>
-                <li>Use bullet points to make it easy to scan.</li>
+        <header>
+            <h1>Alec Rosenberg</h1>
+            <div class="contact">
+                Davie, Florida
+                <span class="separator">|</span>
+                <a href="mailto:alecmrosenberg@gmail.com">alecmrosenberg@gmail.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+19549524983">954-952-4983</a>
+                <span class="separator">|</span>
+                <a href="https://linkedin.com/in/alecmrosenberg" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://github.com/alecrosenberg" target="_blank" rel="noopener">GitHub</a>
+            </div>
+        </header>
+
+        <section>
+            <h2>Education</h2>
+            <div class="edu-header">
+                <span class="edu-school">University of Central Florida — B.S. Computer Science</span>
+                <span class="edu-date">Aug 2024 – May 2028</span>
+            </div>
+            <div class="edu-detail"><strong>GPA:</strong> 3.5</div>
+            <div class="edu-detail"><strong>Activities:</strong> Hack@UCF (Blue Team hackathon competitions), Delta Sigma Phi Fraternity</div>
+            <div class="edu-detail"><strong>Notable Achievement:</strong> Passed CS Foundations Exam</div>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
+            <ul class="skills">
+                <li><strong>Languages:</strong> Java, C, Python</li>
+                <li><strong>Tools:</strong> Linux (Ubuntu), Shell (Bash), Git, Vim, Wireshark, TCP/IP</li>
+                <li><strong>Build Systems:</strong> Make/Makefiles, GCC</li>
             </ul>
-        </div>
-    </section>
+        </section>
 
-    <section>
-        <h2>Projects</h2>
-        <div class="job">
-            <h3>Terminal ChatGPT Client</h3>
-            <p>Built a streaming terminal client with conversation history and config management.</p>
-        </div>
-    </section>
+        <section>
+            <h2>Projects</h2>
 
-    <section>
-        <h2>Skills</h2>
-        <p>Python, JavaScript, Git, etc.</p>
-    </section>
+            <div class="project">
+                <div class="project-title">
+                    <a href="https://github.com/alecrosenberg/Multi-threaded-TCP-Chat-Server" target="_blank" rel="noopener">
+                        Multi-threaded TCP Chat Server
+                    </a>
+                </div>
+                <div class="project-desc">
+                    Built a client-server chat application using Java sockets where each client is handled on its own thread and a broadcast mechanism relays messages between users. Implemented a server-side command parser supporting <code>/nick</code>, <code>/msg</code>, <code>/list</code>, <code>/help</code>, and <code>/exit</code>.
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-title">
+                    <a href="https://github.com/alecrosenberg/Password-Strength-Analyzer" target="_blank" rel="noopener">
+                        Password Strength Analyzer
+                    </a>
+                </div>
+                <div class="project-desc">
+                    Built a command-line password strength analyzer in Java that scores passwords 0–100 based on length, character diversity, and pattern penalties. Integrated the Have I Been Pwned password API using k-anonymity — only the first 5 characters of the SHA-1 hash leave the client — to determine whether a password has been leaked in a data breach.
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Certifications (In Progress)</h2>
+            <div class="cert">
+                CompTIA Security+ <span class="cert-status">— Expected October 2026</span>
+            </div>
+            <div class="cert">
+                TestOut CyberDefense Pro and CompTIA CySA+ <span class="cert-status">— Expected November 2026</span>
+            </div>
+        </section>
+
+    </main>
 </body>
 </html>
